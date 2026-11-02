@@ -4,7 +4,7 @@
 # Original default config saved as config.bak-<date> in this directory.
 #
 # Optional packages this config uses (Ubuntu 24.04):
-#   sudo apt install brightnessctl playerctl slurp mako-notifier wlsunset \
+#   sudo apt install brightnessctl playerctl slurp mako-notifier wlsunset kanshi \
 #                    xdg-desktop-portal-wlr policykit-1-gnome cliphist
 # Anything not installed just silently does nothing.
 
@@ -24,9 +24,11 @@ set $run  wofi --show run --insensitive | xargs swaymsg exec --
 # Lock screen
 set $lock swaylock -f -c 1e1e2e --indicator-radius 80 --show-failed-attempts
 
-# Outputs
+# Outputs (used by the lid switch and workspace placement).
+# $external is matched by model, so on other machines it simply doesn't exist
+# and every workspace falls back to the laptop panel.
 set $laptop eDP-1
-set $external DP-6
+set $external "LG Electronics LG ULTRAWIDE 0x00054C91"
 
 include /etc/sway/config-vars.d/*
 
@@ -55,27 +57,10 @@ focus_on_window_activation smart
 
 ### Output configuration
 #
-# Internal panel: Sharp LQ156T1JW04, 2560x1440 @ 240 Hz.
-# Scale 1.25 gives a 2048x1152 logical desktop (same as your GNOME setup).
-# adaptive_sync enables VRR on the panel (smoother, saves power).
-output $laptop {
-    mode 2560x1440@240.000Hz
-    scale 1.25
-    scale_filter smart
-    adaptive_sync on
-    subpixel rgb
-    # Laptop anchored at 0,0: flameshot misplaces its overlay otherwise
-    position 0 0
-}
-
-# LG UltraWide above the laptop, centred (negative coords keep the laptop at 0,0).
-# Connector names can differ from GNOME — check with `swaymsg -t get_outputs`
-# and update $external if it isn't DP-6.
-output $external {
-    mode 2560x1080@59.978Hz
-    scale 1
-    position -256 -1080
-}
+# Per-monitor mode/scale/position lives in kanshi.conf (profiles matched by
+# monitor model, so this file works unchanged on any machine).
+# kanshi is restarted on every reload so it re-applies its profile.
+exec_always sh -c 'pkill -x kanshi; exec kanshi -c ~/.config/sway/kanshi.conf' 
 
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
