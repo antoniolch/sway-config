@@ -14,14 +14,20 @@ Configurazione di [sway](https://swaywm.org) per MSI GS66 Stealth (Ubuntu 24.04)
 
 ```bash
 git clone https://github.com/antoniolch/sway-config ~/.config/sway
-sudo apt install brightnessctl playerctl slurp mako-notifier wlsunset \
-                 xdg-desktop-portal-wlr policykit-1-gnome cliphist kanshi blueman
-sudo usermod -aG video $USER   # necessario per la luminosità
-ln -sfn ~/.config/sway/waybar ~/.config/waybar   # config di Waybar
+~/.config/sway/install.sh
 ```
 
-Flameshot deve essere >= 13 (la 12.1 di Ubuntu non supporta la scala frazionaria):
-pacchetto `.deb` dalle release di <https://github.com/flameshot-org/flameshot>.
+Lo script `install.sh` (Ubuntu 24.04, si può rilanciare senza problemi):
+
+- installa sway, Waybar, wofi, foot, kanshi e tutti gli strumenti usati dal config
+  (screenshot, appunti, luminosità, notifiche, Bluetooth, portali, font delle icone)
+- installa Flameshot 14 dal GitHub ufficiale verificando lo sha256
+  (la 12.1 di Ubuntu non supporta la scala frazionaria)
+- aggiunge l'utente al gruppo `video` (necessario per la luminosità)
+- collega `~/.config/waybar` alla cartella `waybar/` del repository
+- controlla la sintassi del config di sway
+
+Poi esci e rientra scegliendo **Sway** nella schermata di login.
 
 ## Usarlo su un altro PC
 
