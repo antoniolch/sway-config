@@ -307,6 +307,8 @@ for_window [shell="xwayland"] title_format "%title [X]"
 
 ### Status bar
 #
+# Waybar config and style live in ./waybar (versioned with this repo);
+# ~/.config/waybar is a symlink to it: ln -sfn ~/.config/sway/waybar ~/.config/waybar
 bar {
     swaybar_command waybar
     position top

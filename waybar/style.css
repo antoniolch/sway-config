@@ -1,0 +1,103 @@
+/* Colours match the sway client.* palette (Catppuccin Mocha) */
+@define-color base     #1e1e2e;
+@define-color surface  #313244;
+@define-color overlay  #45475a;
+@define-color text     #cdd6f4;
+@define-color subtext  #a6adc8;
+@define-color blue     #89b4fa;
+@define-color green    #a6e3a1;
+@define-color yellow   #f9e2af;
+@define-color peach    #fab387;
+@define-color red      #f38ba8;
+@define-color mauve    #cba6f7;
+@define-color teal     #94e2d5;
+
+* {
+    font-family: "Noto Sans", FontAwesome, sans-serif;
+    font-size: 13px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background: alpha(@base, 0.92);
+    color: @text;
+}
+
+tooltip {
+    background: @base;
+    border: 1px solid @overlay;
+    border-radius: 6px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: @subtext;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+}
+#workspaces button:hover {
+    background: @surface;
+    box-shadow: none;
+}
+#workspaces button.focused {
+    color: @base;
+    background: @blue;
+}
+#workspaces button.urgent {
+    color: @base;
+    background: @red;
+}
+
+#mode {
+    padding: 0 10px;
+    color: @base;
+    background: @peach;
+}
+
+#window {
+    color: @subtext;
+}
+
+#idle_inhibitor,
+#pulseaudio,
+#backlight,
+#network,
+#bluetooth,
+#cpu,
+#memory,
+#temperature,
+#language,
+#battery,
+#clock,
+#tray,
+#scratchpad {
+    padding: 0 9px;
+    margin: 4px 0;
+    border-radius: 6px;
+    background: @surface;
+}
+
+#idle_inhibitor.activated { color: @yellow; }
+#pulseaudio               { color: @blue; }
+#pulseaudio.muted         { color: @overlay; }
+#backlight                { color: @yellow; }
+#network                  { color: @teal; }
+#network.disconnected     { color: @red; }
+#bluetooth                { color: @blue; }
+#bluetooth.connected      { color: @mauve; }
+#bluetooth.off,
+#bluetooth.disabled       { color: @overlay; }
+#cpu                      { color: @green; }
+#memory                   { color: @mauve; }
+#temperature              { color: @peach; }
+#temperature.critical     { color: @base; background: @red; }
+#language                 { color: @text; }
+#battery                  { color: @green; }
+#battery.charging,
+#battery.plugged          { color: @green; }
+#battery.warning:not(.charging)  { color: @yellow; }
+#battery.critical:not(.charging) { color: @base; background: @red; }
+#clock                    { color: @text; margin-right: 4px; }
+#tray                     { margin-right: 4px; }
