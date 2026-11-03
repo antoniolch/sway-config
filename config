@@ -62,7 +62,8 @@ focus_on_window_activation smart
 # kanshi is restarted on every reload so it re-applies its profile.
 exec_always sh -c 'pkill -x kanshi; exec kanshi -c ~/.config/sway/kanshi.conf' 
 
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# Wallpaper is versioned in this repo
+output * bg ~/.config/sway/wallpaper.jpg fill
 
 # Lid closed with an external monitor → disable the internal panel.
 # (Without an external monitor, logind suspends as usual.)
