@@ -14,7 +14,7 @@ Configurazione di [sway](https://swaywm.org) per MSI GS66 Stealth (Ubuntu 24.04)
 ```bash
 git clone https://github.com/antoniolch/sway-config ~/.config/sway
 sudo apt install brightnessctl playerctl slurp mako-notifier wlsunset \
-                 xdg-desktop-portal-wlr policykit-1-gnome cliphist kanshi
+                 xdg-desktop-portal-wlr policykit-1-gnome cliphist kanshi blueman
 sudo usermod -aG video $USER   # necessario per la luminosità
 ```
 

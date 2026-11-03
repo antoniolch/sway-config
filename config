@@ -5,7 +5,7 @@
 #
 # Optional packages this config uses (Ubuntu 24.04):
 #   sudo apt install brightnessctl playerctl slurp mako-notifier wlsunset kanshi \
-#                    xdg-desktop-portal-wlr policykit-1-gnome cliphist
+#                    xdg-desktop-portal-wlr policykit-1-gnome cliphist blueman
 # Anything not installed just silently does nothing.
 
 ### Variables
@@ -297,6 +297,7 @@ for_window [window_role="dialog"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [app_id="pavucontrol"] floating enable, resize set 800 600
 for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="blueman-manager"] floating enable, resize set 700 500
 for_window [app_id="org.gnome.Calculator"] floating enable
 for_window [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set 900 600
 for_window [title="Picture-in-Picture"] floating enable, sticky enable
@@ -327,6 +328,10 @@ exec mako
 
 # Network tray icon
 exec nm-applet --indicator
+
+# Bluetooth tray icon; $mod+Shift+b opens the device manager
+exec blueman-applet
+bindsym $mod+Shift+b exec blueman-manager
 
 # Night light (Rome-ish coordinates; tweak or remove)
 exec wlsunset -l 41.9 -L 12.5
